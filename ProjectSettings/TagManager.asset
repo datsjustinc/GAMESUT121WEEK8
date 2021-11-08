@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - ClickButton
   - GridSystem
+  - Collider
+  - Reset
+  - Loot
   layers:
   - Default
   - TransparentFX

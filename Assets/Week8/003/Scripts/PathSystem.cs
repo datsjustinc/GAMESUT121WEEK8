@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PathSystem : MonoBehaviour {
 
@@ -342,8 +343,9 @@ public class PathSystem : MonoBehaviour {
         {
             seedType = SeedType.CUSTOM; //same levels
             seed = 1;
-            
+
             SetSeed();
+            
 
             if (animatedPath)
                 StartCoroutine(CreatePathRoutine());
@@ -351,7 +353,7 @@ public class PathSystem : MonoBehaviour {
                 CreatePath();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             seedType = SeedType.RANDOM; // randomize levels
             seed = 0;

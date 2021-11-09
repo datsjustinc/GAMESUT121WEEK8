@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PathSystem : MonoBehaviour {
+public class PathSystem2 : MonoBehaviour {
 
     public enum SeedType { RANDOM, CUSTOM }
     [Header("Random Related Stuff")]
@@ -83,8 +83,6 @@ public class PathSystem : MonoBehaviour {
 
     void AddGridCell(Vector2 position)
     {
-        colors.Clear(); 
-
         var offset = new MyGridCell(position + currentPositionOffset);
         var offset2 = new MyGridCell(position + currentPositionOffset2);
         
@@ -92,19 +90,16 @@ public class PathSystem : MonoBehaviour {
         gridCellList2.Add(offset); // add second current position for second grid cell list
         gridCellList3.Add(offset2); // add second current position for second grid cell list
 
-        colors.Add(Random.Range(0.2f, 0.7f));
-        colors.Add(Random.Range(0.2f, 0.7f));
-        colors.Add(Random.Range(0.2f, 0.7f));
-  
         Instantiate(Ground, position, Quaternion.identity);
-        //temp.GetComponent<SpriteRenderer>().color = Color.red;
+        Instantiate(PathCollider, position + currentPositionOffset, Quaternion.identity);
+        Instantiate(PathCollider, position + currentPositionOffset2, Quaternion.identity);
 
-        GameObject temp2 = Instantiate(PathCollider, position + currentPositionOffset, Quaternion.identity);
-        temp2.GetComponent<SpriteRenderer>().color = new Color(colors[0], colors[1], colors[2], 0.5f);
-        //temp2.GetComponent<SpriteRenderer>().color = Color.red;
-
-        GameObject temp3 = Instantiate(PathCollider, position + currentPositionOffset2, Quaternion.identity);
-        temp3.GetComponent<SpriteRenderer>().color = new Color(colors[0], colors[1], colors[2], 0.5f);
+        colors.Add(Random.Range(0.2f, 0.8f));
+        colors.Add(Random.Range(0.2f, 0.8f));
+        colors.Add(Random.Range(0.2f, 0.8f));
+        colors.Add(Random.Range(0.2f, 0.8f));
+        colors.Add(Random.Range(0.2f, 0.8f));
+        colors.Add(Random.Range(0.2f, 0.8f));
     }
     
 
@@ -127,20 +122,6 @@ public class PathSystem : MonoBehaviour {
         for (int i = 0; i < Loot.Length; i++)
         {
             Destroy(Loot[i]); //destroy all colliders by going through collider list
-        }
-
-        GameObject[] Ground = GameObject.FindGameObjectsWithTag("Ground");
-
-        for (int i = 0; i < Ground.Length; i++)
-        {
-            Destroy(Ground[i]); //destroy all colliders by going through collider list
-        }
-
-        GameObject[] Reset = GameObject.FindGameObjectsWithTag("Reset");
-
-        for (int i = 0; i < Reset.Length; i++)
-        {
-            Destroy(Reset[i]); //destroy all colliders by going through collider list
         }
 
         Player.transform.position = new Vector3(-2.157746f, -3.134951f, 1f); // starting position in each formation
@@ -171,14 +152,9 @@ public class PathSystem : MonoBehaviour {
         gridCellList3.Add(offset4); // add second current position for second grid cell list
         gridCellList2.Add(offset5); // add second current position for second grid cell list
 
-        GameObject temp4 = Instantiate(PathCollider, currentPosition + start, Quaternion.identity);
-        temp4.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), 0.5f);
-
-        GameObject temp5 = Instantiate(PathCollider, currentPosition + start2, Quaternion.identity);
-        temp5.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), 0.5f);
-        
-        GameObject temp6 = Instantiate(PathCollider, currentPosition + start3, Quaternion.identity);
-        temp6.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), 0.5f);
+        Instantiate(PathCollider, currentPosition + start, Quaternion.identity);
+        Instantiate(PathCollider, currentPosition + start2, Quaternion.identity);
+        Instantiate(PathCollider, currentPosition + start3, Quaternion.identity);
 
         for (int i = 0; i < pathLength; i++) 
         {
@@ -189,7 +165,7 @@ public class PathSystem : MonoBehaviour {
             {
                 currentPosition = new Vector2(currentPosition.x + cellSize, currentPosition.y);
 
-                if (n.IsBetween(11, 14))
+                if (n.IsBetween(10, 15))
                 {
                     Instantiate(Loot0, currentPosition, Quaternion.identity);
                 }
@@ -199,7 +175,7 @@ public class PathSystem : MonoBehaviour {
             {
                 currentPosition = new Vector2(currentPosition.x, currentPosition.y + cellSize);
 
-                if (n.IsBetween(41, 44))
+                if (n.IsBetween(40, 45))
                 {
                     Instantiate(Loot1, currentPosition, Quaternion.identity);
                 }
@@ -209,7 +185,7 @@ public class PathSystem : MonoBehaviour {
             {
                 currentPosition = new Vector2(currentPosition.x + cellSize, currentPosition.y);
                 
-                if (n.IsBetween(61, 64))
+                if (n.IsBetween(60, 65))
                 {
                     Instantiate(Loot2, currentPosition, Quaternion.identity);
                 }
@@ -219,7 +195,7 @@ public class PathSystem : MonoBehaviour {
             {
                 currentPosition = new Vector2(currentPosition.x, currentPosition.y + cellSize);
 
-                if (n.IsBetween(86, 89))
+                if (n.IsBetween(85, 90))
                 {
                     Instantiate(Loot3, currentPosition, Quaternion.identity);
                 }
@@ -248,14 +224,9 @@ public class PathSystem : MonoBehaviour {
         gridCellList3.Add(offset7); // add second current position for second grid cell list
         gridCellList3.Add(offset8); // add second current position for second grid cell list
 
-        GameObject temp7 = Instantiate(PathCollider, currentPosition + start4, Quaternion.identity);
-        temp7.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), 0.5f);
-
-        GameObject temp8 = Instantiate(PathCollider, currentPosition + start5, Quaternion.identity);
-        temp8.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), 0.5f);
-        
-        GameObject temp9 = Instantiate(PathCollider, currentPosition + start6, Quaternion.identity);
-        temp9.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f), 0.5f);
+        Instantiate(PathCollider, currentPosition + start4, Quaternion.identity);
+        Instantiate(PathCollider, currentPosition + start5, Quaternion.identity);
+        Instantiate(PathCollider, currentPosition + start6, Quaternion.identity);
     }
 
     IEnumerator CreatePathRoutine() 
@@ -299,7 +270,6 @@ public class PathSystem : MonoBehaviour {
 
     private void OnDrawGizmos() 
     {
-        /*
         for (int i = 0; i < gridCellList.Count; i++) 
         {
             if (i < gridCellList.Count - 1)
@@ -343,7 +313,6 @@ public class PathSystem : MonoBehaviour {
             //Gizmos.color = new Color(0.490566f, 0.02739405f, 0.02739405f, 0.5f);
             Gizmos.DrawCube(gridCellList3[i].location, Vector3.one * cellSize); // draw third grid cell list
         }
-        */
         
     }
 
